@@ -37,3 +37,45 @@ y_pred=model.predict(x_test)
 
 #Step 4
 #Building Streamlit app
+def fun():
+	st.header("placement prediction")
+	st.info("enter all the details")
+
+	age=st.number_input("age")
+	gen=st.radio("enter gender",["male","female"])
+	stream=st.radio("enter stream",["cse","ece","mech"])
+	interns=st.number_input("how many internships:")
+	cgpa=st.number_input("enter CGPA:")
+	back=st.number_input("enter the no backlogs")
+	if gen=="Male":
+		gen=1
+	else:
+		gen=0
+
+	if stream=="cse":
+		stream=1
+	elif stream=="ece":
+		stream=4
+	elif stream=="mech":
+		stream=5
+	else:
+		stream=2
+
+
+
+
+	li=[age,gen,stream,interns,cgpa,back]
+	x=st.button("submit")
+	if x:
+		output=model.predict([li])
+		if output==1:
+			st.success("yes you got placement")
+		else:
+			st.error("no you are not placed")
+
+
+
+
+
+
+fun()
